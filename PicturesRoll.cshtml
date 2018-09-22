@@ -1,0 +1,480 @@
+﻿    @{
+        ViewBag.Title = "Pictures";
+    }
+<style type="text/css">
+    .onezoom :hover {
+        background-color: rgba(255,255,255,0.3);
+    }
+
+    #btnleft :hover {
+        background-color: rgba(255,255,255,0.3);
+    }
+
+    #btnright :hover {
+        background-color: rgba(255,255,255,0.3);
+    }
+</style>
+<div>
+
+</div>
+<div>
+    <h3>@ViewBag.Message</h3>
+</div>
+<body style="background-color:rgb(41,5,5);">
+    <div id="body">
+        <scrolldiv id="scrolldiv">
+        </scrolldiv>
+        <begindiv id="begindiv">
+        </begindiv>
+        <picture id="picture"></picture>
+        <enddiv id="enddiv">
+        </enddiv>
+    </div>
+</body>
+<script>
+    $(document).ready(function () {
+        $(window).resize(function () {
+            once = null;
+            bigzoomheight = "70px";
+            h = null;
+            if (h === null) {
+                h = window.innerHeight
+                    || document.documentElement.clientHeight
+                    || document.body.clientHeight;
+            }
+            w = null;
+            if (w === null) {
+                w = window.innerWidth
+                    || document.documentElement.clientWidth
+                    || document.body.clientWidth;
+            }
+            bigw = parseFloat(1.0);
+            bigh = parseFloat(w / (h) - 1.0);//?
+            smallh = parseFloat(0.6);
+            smallheight = parseInt(w / 1.7786 * smallh) + "px";
+            bigheight = parseInt(w / 1.7786) + "px";
+            smallwidth = parseInt(w / 1.7786 * (1200 / 896) * smallh) + "px";
+            bigwidth = parseInt(w / 1.7786 * (1200 / 896) * bigw) + "px";
+            size = 1200;
+            wwidth = parseInt(w / 1.7786 * (1200 / 896) * smallh) + "px";
+            hheight = parseInt(w / 1.7786 * smallh) + "px";
+            brad = parseInt(w / 1.7786 * smallh) + "px";
+            hheightonepointone = parseInt(w / 1.7786 * smallh * 1.1) + "px";
+            ms = 300;
+            myVar;
+            myVar2;
+            numpixs;
+            pix = "0px";
+            leftix = "0px";
+            mydivs = new Array("one");
+            fibonaccipart = new Array(144, 89, 55, 34, 21, 13, 8, 5, 3, 2, 1);
+            fibonnaciindex = 0;
+            myfuncs = new Array("#one");
+            pixsnumber;
+            aatop = parseInt(w / 1.7786 * smallh * (134 / (1024 - 134))) + "px";
+            hendheight = parseInt(w / 1.7786 * smallh * (1.14955357)) + "px";
+            endwidth = parseInt((w / 1.7786) * ((157) / 1024 * (1 + (134 / 896))) * smallh) + "px";
+            beginwidth = parseInt((w / 1.7786) * ((157) / 1024 * (1 + (134 / 896))) * smallh) + "px";
+            endwidthright = parseInt(0) + "px";
+            beginwidthright = parseInt(0) + "px";
+            atop = "50%";
+            adusta = 100000;
+            scrollsm = true;
+            scrolls = true;
+            we = parseInt(wwidth.substring(0, wwidth.lastIndexOf("p")));
+            ed = parseInt(endwidth.substring(0, endwidth.lastIndexOf("p")));
+            bd = parseInt(beginwidth.substring(0, beginwidth.lastIndexOf("p")));
+            edr = parseInt(endwidthright.substring(0, endwidthright.lastIndexOf("p")));
+            bdr = parseInt(beginwidthright.substring(0, beginwidthright.lastIndexOf("p")));
+            img = 'one';
+            block = 'inline-block; float:left';
+            mainblock = 'inline-block; float:left';
+            myimage;
+            licensewidth = "60px";
+            if (once === null) {
+                once = true;
+            }
+            draw(once);
+            setpixsnum();
+        });
+    });   
+    $(window).on("load", function () {
+        if (once === null) {
+            once = true;
+        }
+        draw(once);
+        setpixsnum();
+    });
+</script>
+<script type="text/javascript">    
+    var once = null;
+    var bigzoomheight = "70px";
+    var h = null;
+    if (h === null) {
+        h = window.innerHeight
+            || document.documentElement.clientHeight
+            || document.body.clientHeight;
+    }
+    var w = null;
+    if (w === null) {
+        w = window.innerWidth
+            || document.documentElement.clientWidth
+            || document.body.clientWidth;
+    }
+    var bigw = parseFloat(1.0);
+    var bigh = parseFloat(w / (h) - 1.0);//?
+    var smallh = parseFloat(0.6);
+    var smallheight = parseInt(w / 1.7786 * smallh) + "px";
+    var bigheight = parseInt(w / 1.7786) + "px";
+    var smallwidth = parseInt(w / 1.7786 * (1200 / 896) * smallh) + "px";    
+    var bigwidth = parseInt(w / 1.7786 * (1200 / 896) * bigw) + "px";
+    var size = 1200;
+    var wwidth = parseInt(w / 1.7786 * (1200 / 896) * smallh) + "px";
+    var hheight = parseInt(w / 1.7786 * smallh) + "px";
+    var brad = parseInt(w / 1.7786 * smallh) + "px";
+    var hheightonepointone = parseInt(w / 1.7786 * smallh * 1.1) + "px";
+    var ms = 300;
+    var myVar;
+    var myVar2;
+    var numpixs;
+    var pix = "0px";
+    var leftix = "0px";
+    var mydivs = new Array("one");
+    var fibonaccipart = new Array(144, 89, 55, 34, 21, 13, 8, 5, 3, 2, 1);
+    var fibonnaciindex = 0;
+    var myfuncs = new Array("#one");
+    var pixsnumber;
+    var aatop = parseInt(w / 1.7786 * smallh * (134 / (1024 - 134))) + "px";
+    var hendheight = parseInt(w / 1.7786 * smallh * (1.14955357)) + "px";
+    var endwidth = parseInt((w / 1.7786) * ((157) / 1024 * (1 + (134 / 896))) * smallh) + "px";
+    var beginwidth = parseInt((w / 1.7786) * ((157) / 1024 * (1 + (134 / 896))) * smallh) + "px";
+    var endwidthright = parseInt(0) + "px";
+    var beginwidthright = parseInt(0) + "px";
+    var atop = "50%";
+    var adusta = 100000;
+    var scrollsm = true;
+    var scrolls = true;
+    var we = parseInt(wwidth.substring(0, wwidth.lastIndexOf("p")));
+    var ed = parseInt(endwidth.substring(0, endwidth.lastIndexOf("p")));
+    var bd = parseInt(beginwidth.substring(0, beginwidth.lastIndexOf("p")));
+    var edr = parseInt(endwidthright.substring(0, endwidthright.lastIndexOf("p")));
+    var bdr = parseInt(beginwidthright.substring(0, beginwidthright.lastIndexOf("p")));
+    var img = 'one';
+    var block = 'inline-block; float:left';
+    var mainblock = 'inline-block; float:left';
+    var myimage;
+    var licensewidth = "60px";
+    function draw(op) {
+        if (op) {
+            document.getElementById("body").style.height = hheight;
+            for (var x = 0; x < mydivs.length; x++) {
+                document.getElementById('begindiv').innerHTML = '';
+                document.getElementById('begindiv').innerHTML = ('<div  style="display:' + block + ';position:relative;top:0;">' +
+                    '<div style="position:relative;overflow:hidden;width:' + beginwidth + ';">' +
+                    '<img id="begin" src="/Content/Images/' + 'beginnew' + '.jpg"' + ' alt="' + 'begin' + '" style="' + ';position:relative; height: ' + hendheight + ';"' + '/>' +
+                    '</div>' +
+                    '</div>');
+                document.getElementById('picture').innerHTML = '';
+                document.getElementById('picture').innerHTML = ('<div  style="display:' + mainblock + ';position:relative;top:0;"><div  id="outerframe" style="position:relative;overflow:hidden;width: ' + wwidth + '; height: ' + hheight + ';' + '; top:' + aatop + ';overflow:hidden;"><div>' +
+                    '<div id="oneframe" style="position:relative; z-index:16; width: ' + wwidth + '; height: ' + hheight + '; top:0;overflow:hidden;">' +
+                    '<div id="btnleft" style="z-index:18;display:inline-block;border:hidden;background-color:rgba(255,255,255,0.0);position:absolute; top:0; width:49%;height: ' + hheight + ';"' + ' onclick="sizeit()">' +
+                    '<button style="border:hidden;background-color:rgba(255,255,255,0.0); display:inline-block;z-index:15; position:absolute; top:0; width:100%;height: ' + hheight + ';">' +
+                    '<span id="leftarrow" style="font-size:xx-large; float:left;top:' + atop + ';"><</span></button>' +
+                    '</div>' +
+                    '<div id="btnright" style="z-index:18;display:inline-block;border:hidden;background-color:rgba(255,255,255,0.0);position:absolute; top:0; right:0; width:49%;height: ' + hheight + ';"' + ' onclick="sizeitreverse()">' +
+                    '<button style="border:hidden;background-color:rgba(255,255,255,0.0); display:inline-block;z-index:15; position:absolute; top:0; right:0; width:100%;height: ' + hheight + ';">' +
+                    '<span id="rightarrow" style="font-size:xx-large; float:right; top:' + atop + ';">></span></button>' +
+                    '</div>' +
+                    '<div class="' + 'one' + 'zoom" style="display:inline-block;border:groove 2px rgba(255,255,255,0.3);background-color:rgba(0,0,0,0.0); z-index:18; position:absolute; top:30%; left:30%; height:40%; width:40%;border-radius: ' + hheight + '"' + 'onclick="zoomit()">' +
+                    '<img src="/Content/pics/zoom.png" alt="zoom" style="z-index:12; position:absolute; top:45%; left:35%;height:24px;">' +
+                    '<span id="' + 'one' + 'zoom"' + 'style="font-size:unset; position:absolute; top:45%; left:50%;height:20px;"></span>' +
+                    '</div>' +
+                    '<div>' +
+                    '<div' + '" id="' + 'one' + 'reflection" style="z-index:12;background-color:white;color:black; position:absolute; top:45%; left:60%">' +
+                    '<div id="' + 'one' + 'text"' + 'style="font-size:unset;text-wrap:normal;"></div>' +
+                    '</div>' +
+                    '<img id="one" src="/Content/Images/' + img + '.jpg"' + ' alt="' + img + '" style="position:absolute; height: ' + hheight + '; left:' + leftix + '; top:0;"' + 'onclick="zoomit()"' + '/>' +
+                    '</div>' + '</div>');
+                document.getElementById('enddiv').innerHTML = '';
+                document.getElementById('enddiv').innerHTML = ('<div  style="display:' + block + ';position:relative;top:0;">' +
+                    '<div style="position:relative;overflow:hidden;width:' + endwidth + ';">' +
+                    '<img id="end" src="/Content/Images/' + 'endnew' + '.jpg"' + ' alt="' + 'end' + '" style="right:' + endwidthright + ';position:relative; height: ' + hendheight + ';"' + '/>' +
+                    '</div>' +
+                    '</div>');
+            }
+        }
+    };
+    document.getElementById('scrolldiv').innerHTML = (
+        '<div style="display:inline;padding:5px;">' +
+        '<span style="font-size:unset; position:relative; color: white; top:20px; right:0;height:20px;"><input type="checkbox" checked="' + scrollsm + '" id="scrollyes" onchange="scrollit(this)"/>Roll?</span>' +
+        '</div><div id="license" style="color:white;word-break:normal;width:' + licensewidth + ';float:right;"><i>Camera Roll designed by <a target="_blank" href="https://www.linkedin.com/in/michaelbsa">Michael Biggar</a>.</i></div>'
+    )
+    
+    function sizeitreverse() {
+        var a = "0px";
+        a = pix;
+
+        switch (a) {
+            case ("0px"): { pix = "-1200px"; size = 1200; break; }
+            case ("-1200px"): { pix = "-2400px"; size = 1200; break; }
+            case ("-2400px"): { pix = "-3600px"; size = 1200; break; }
+            case ("-3600px"): { pix = "-4800px"; size = 1600; break; }
+            case ("-4800px"): { pix = "-6402px"; size = 1600; break; }
+            case ("-6402px"): { pix = "-8002px"; size = 1350; break; }
+            case ("-8002px"): { pix = "-9353px"; size = 1351; break; }
+            case ("-9353px"): { pix = "-10702px"; size = 1350; break; }
+            case ("-10702px"): { pix = "0px"; size = 1200; break; }
+            default: { pix = "0px"; size = 1200; break; }
+        }
+        move();
+    };
+    function sizeit() {
+        var a = "0px";
+        a = pix;
+        switch (a) {
+            case ("0px"): { pix = "-10702px"; size = 1350; break; }
+            case ("-10702px"): { pix = "-9353px"; size = 1351; break; }
+            case ("-9353px"): { pix = "-8003px"; size = 1350; break; }
+            case ("-8003px"): { pix = "-6402px"; size = 1600; break; }
+            case ("-6402px"): { pix = "-4800px"; size = 1600; break; }
+            case ("-4800px"): { pix = "-3600px"; size = 1200; break; }
+            case ("-3600px"): { pix = "-2400px"; size = 1200; break; }
+            case ("-2400px"): { pix = "-1200px"; size = 1200; break; }
+            case ("-1200px"): { pix = "0px"; size = 1200; break; }
+            default: { pix = "10702px"; size = 1200; break; }
+        }
+        move();
+    };
+
+    function move() {
+        document.body.style.cursor = 'wait';
+        myVar = setInterval(moveit, ms);
+    };
+    function movezoomstart() {
+        moveitzoom();
+    };
+    function moveit() {
+        setpixsnum();
+        scroll(fibonnaciindex);
+        set();
+    };
+    function moveitzoom() {
+        setpixsnum();
+        zoomscroll(fibonnaciindex);
+        set();
+    };
+    function cameraroll() {
+        var kaizen = scrolls;
+        var zi = true;
+        var a = document.getElementById('oneframe').style.height;
+        if (kaizen) {
+            if (a === smallheight) {
+                block = "inline-block; float:left";
+            }
+            else {
+                block = "none";
+            }
+        }
+        else {
+            block = "none";
+        }
+    };
+    function scrollit(k) {
+        if (k.checked) {
+            scrollsm = true;
+            scrolls = true;
+            img = 'one';
+        }
+        else {
+            img = 'two';
+            scrollsm = false;
+            scrolls = false;
+        }
+        setpixsnum();
+        cameraroll();
+        set();
+    };
+
+    function zoomit() {
+        var kaizen = scrolls;
+        var zi = true;
+        var a = document.getElementById('oneframe').style.height;
+        cameraroll();
+        if (kaizen) {
+            if (a === smallheight) {
+                document.body.style.cursor = 'wait';
+                setpixsnum();
+                zooms();
+                move();
+                set();
+                document.body.style.cursor = 'default';
+            }
+            else {
+                document.body.style.cursor = 'wait';
+                setpixsnum();
+                zooms();
+                move();
+                set();
+                document.body.style.cursor = 'default';
+            }
+        }
+        else {
+            if (a === smallheight) {
+                document.body.style.cursor = 'wait';
+                setpixsnum();
+                zooms();
+                move();
+                set();
+                document.body.style.cursor = 'default';
+            }
+            else {
+                document.body.style.cursor = 'wait';
+                setpixsnum();
+                zooms();
+                move();
+                set();
+                document.body.style.cursor = 'default';
+            }
+        }        
+    };
+    function setpixsnum() {
+        var a = document.getElementById('oneframe').style.height;
+        
+        pixsnum = parseInt(pix.substring(0, pix.lastIndexOf("p")));
+        //var t = h < w ? h : w;only using width as fraction of laptop size
+        if (a === smallheight) {
+            
+            pixsnumber = parseInt(w / 1.7786 * (pixsnum / 896) * smallh);
+            //not h nor 896
+            //hheight = parseInt(h * (size / 896) * smallh) + "px";            
+            wwidth = parseInt(w / 1.7786 * (size / 896) * smallh) + "px";             
+            document.getElementById("license").style.width = parseInt(w * 0.6 - ((w / 1.7786 * (size / 896) * smallh) - 30)) + "px";
+            
+        }
+        else {
+           
+            pixsnumber = parseInt(w / 1.7786 * (pixsnum / 896) * bigw);
+            //not h nor 896
+            //hheight = parseInt(h * (size / 896) * bigh) + "px";
+            wwidth = parseInt(w / 1.7786 * (size / 896) * bigw) + "px";
+                       //leftix = parseInt(h * (numpixs / 896) * big); + "px";
+            document.getElementById("license").style.width = parseInt(w * 1.2 - ((w / 1.7786 * (size / 896) * bigw) - 30)) + "px";
+        }
+    };
+    function scroll(calls) {
+        numpixs = parseInt(leftix.substring(0, leftix.lastIndexOf("p")));
+        cameraroll();
+        if (scrolls) {
+            img = 'one';
+            var absnumpixs = numpixs;
+            var abspixsnumber = pixsnumber;
+            if (numpixs < 0) {
+                absnumpixs = numpixs * -1;
+            }
+            if (pixsnumber < 0) {
+                abspixsnumber = pixsnumber * -1;
+            }
+            calls++;
+            fibonnaciindex = calls;
+            if (calls > 10) {
+                calls = 0;
+                fibonnaciindex = calls;
+            }
+            if (numpixs > pixsnumber) {
+                //alert("a" + "pixsnumber" + pixsnumber + "numpixs" + numpixs + "fibonnaciindex" + fibonnaciindex + "adjusta" + adjusta + "leftix" + leftix + "calculation" + parseInt((absnumpixs - abspixsnumber) / (10 - fibonnaciindex)));
+                adjusta = parseInt((numpixs - pixsnumber) / fibonaccipart[calls]);
+                numpixs -= adjusta;
+                leftix = numpixs + "px";
+            }
+            if (numpixs < pixsnumber) {
+                //alert("b" + "pixsnumber" + pixsnumber + "numbixs" + numpixs + "fibonnaciindex" + fibonnaciindex + "adjusta" + adjusta);
+                //alert(fibonnaciindex);
+                adjusta = parseInt((pixsnumber - numpixs) / fibonaccipart[calls]);
+                numpixs += adjusta;
+                leftix = numpixs + "px";
+            }
+        }
+        else {
+            img = 'two';
+            numpixs = pixsnumber;
+            leftix = numpixs + "px";
+        }
+        if (pixsnumber == 0) {
+            numpixs = 0;
+            leftix = "0px";
+        }
+        if (numpixs === pixsnumber) {
+            clearInterval(myVar);
+            leftix = numpixs + "px";
+            document.body.style.cursor = 'default';
+        }
+    };
+    function zoomscroll(calls) {
+        numpixs = parseInt(leftix.substring(0, leftix.lastIndexOf("p")));
+        numpixs = pixsnumber;
+        leftix = numpixs + "px";
+    };
+    function zooms() {
+        var a = document.getElementById('oneframe').style.height;
+        if (a === smallheight) {
+            hheight = bigheight;
+            wwidth = bigwidth;
+            document.getElementById('one' + "reflection").style.setProperty("innerHTML", "");
+            document.getElementById('one' + "reflection").style.setProperty("fontSize", "xx-large");
+            document.getElementById('one' + "zoom").style.setProperty("fontSize", "xx-large");
+            document.getElementById('one' + "zoom").style.setProperty("height", hheight * 0.8);
+            //SetVisUnvis('one', true);
+            //width:10%;height: ' + hheight + ';
+            //alert("pixsnum" + pixsnum + "a" + a + "smallheight" + smallheight + "pixsnumber" + pixsnumber + "wwidth" + wwidth + "bigwidth" + bigwidth + "hheight" + hheight);
+        }
+        else {
+            hheight = smallheight;
+            wwidth = smallwidth;
+            document.getElementById('one' + "reflection").style.setProperty("innerHTML", "");
+            document.getElementById('one' + "reflection").style.setProperty("fontSize", "medium");
+            document.getElementById('one' + "zoom").style.setProperty("fontSize", "medium");
+            document.getElementById('one' + "zoom").style.setProperty("height", hheight * 0.8);
+            //SetVisUnvis('one', false);
+        }
+    };
+    function set() {
+        //endwidth = parseInt(h * (806 / 896) * smallh) + "px";
+        we = parseInt(wwidth.substring(0, wwidth.lastIndexOf("p")));
+        ed = parseInt(endwidth.substring(0, endwidth.lastIndexOf("p")));
+        edr = parseInt(endwidthright.substring(0, endwidthright.lastIndexOf("p")));
+        bdr = parseInt(beginwidthright.substring(0, beginwidthright.lastIndexOf("p")));
+        //parseInt(ed + edr + we + bdr) < parseInt(w * 0.85) ? endwidth = parseInt(parseInt(w * 0.85) - we - edr - bdr) + "px" : endwidth = ed + "px";
+        //parseInt(ed + edr + we + bdr) < parseInt(w * 0.85) ? endwidthright = parseInt(parseInt(w * 0.85) - we - edr - bdr) + "px" : endwidthright = 0 + "px";
+        //parseInt(ed + edr + we + bdr) < parseInt(w * 0.85) ? beginwidth = parseInt(parseInt(w * 0.85) - we - edr - bdr) + "px" : beginwidth = ed + "px";
+        //parseInt(ed + edr + we + bdr) < parseInt(w * 0.85) ? beginwidthright = parseInt(parseInt(w * 0.85) - we - edr - bdr) + "px" : beginwidthright = 0 + "px";
+        //parseInt(ed + edr + we + bdr) < parseInt(w * 0.85) ? beginwidth = ed + "px" : beginwidth = ed + "px";
+        //parseInt(ed + edr + we) < parseInt(w * 0.85) ? beginwidthright = parseInt(0) + "px" : beginwidthright = 0 + "px";
+        //alert("parseInt(ed + edr + we)" + parseInt(ed + edr + we));
+        //alert("ed" + ed + "edr" + edr + "we" + we );
+        //alert("endwidth" + endwidth + "endwidthright" + endwidthright);
+        draw(true);
+        //document.getElementById("outerframe").style.setProperty("width", wwidth);
+        //document.getElementById("outerframe").style.setProperty("height", hheight * 1.1);
+        //document.getElementById("oneframe").style.setProperty("width", wwidth);
+        //document.getElementById("oneframe").style.setProperty("height", hheight);
+        //document.getElementById("one").style.setProperty("height", hheight);
+        //document.getElementById("one").style.setProperty("left", leftix);
+        //document.getElementById("btnright").style.setProperty("height", hheight);
+        //document.getElementById("btnleft").style.setProperty("height", hheight);
+        //document.getElementById("leftarrow").style.setProperty("top", atop);
+        //document.getElementById("rightarrow").style.setProperty("top", atop);
+    };
+        //function SetVisUnvis(name, wallswitch) {
+        //    if (wallswitch) {
+        //        for (var x = 0; x < mydivs.length; x++) {
+        //            document.getElementById('one' + 'frame').style.display = "none";
+        //        }
+        //        document.getElementById(name + 'frame').style.display = "inline-block";
+        //    }
+        //    else {
+        //        for (var x = 0; x < mydivs.length; x++) {
+        //            document.getElementById('one' + 'frame').style.display = "inline-block";
+        //        }
+        //    }
+        //};
+</script>
